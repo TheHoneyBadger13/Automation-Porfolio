@@ -1,0 +1,12 @@
+// @ts-check
+import { test, expect } from '@playwright/test';
+const LoginPage = require('../pageObjects/LoginPage');
+
+test('has title', async ({ page }) => {
+  const loginPage = new LoginPage(page);
+  await page.goto('https://opensource-demo.orangehrmlive.com');
+
+  // Expect a title "to contain" a substring.
+  await expect(page).toHaveURL('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+  await loginPage.login('Admin', 'admin123');
+});
