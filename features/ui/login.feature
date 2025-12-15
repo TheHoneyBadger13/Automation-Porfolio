@@ -1,4 +1,4 @@
-Feature: OrangeHRM Login
+Feature: SauceDemo Login
 
  Scenario Outline: Successful login with valid credentials
   Given the user navigates to the SauceDemo login page

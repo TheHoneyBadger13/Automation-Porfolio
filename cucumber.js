@@ -4,7 +4,9 @@ module.exports = {
       "./stepDefinitions/**/*.js",
       "./world.js"
     ],
-    format: ["progress"],
+    format: [
+      "json:reports/cucumber-report.json"   // generate JSON with attachments
+    ],
     publishQuiet: true
   }
 };

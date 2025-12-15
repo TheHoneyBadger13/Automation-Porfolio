@@ -23,4 +23,6 @@ When('the user logs in with incorrect username {string} and password {string}', 
 
 Then('the user is redirected to the inventory page', async function () {
   await expect(this.page).toHaveURL('https://www.saucedemo.com/inventory.html');
+  const screenshot = await this.page.screenshot();
+  await this.attach(screenshot, 'image/png');
 });
