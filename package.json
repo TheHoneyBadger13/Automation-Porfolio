@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:feature": "cucumber-js features"
+    "test:feature": "cucumber-js features && node report.js"
   },
   "keywords": [],
   "author": "",

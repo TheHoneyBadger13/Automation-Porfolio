@@ -8,7 +8,7 @@ on:
   pull_request:
     branches: [ main, develop ]
   schedule:
-    - cron: "15 9 * * *"  # Run daily at 5:15 PM Philippines time (UTC+8)
+    - cron: "50 9 * * *"  # Run daily at 5:15 PM Philippines time (UTC+8)
   workflow_dispatch:
 
 jobs:
@@ -26,7 +26,7 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Install Playwright browsers
         run: npx playwright install
@@ -37,18 +37,12 @@ jobs:
           PLAYWRIGHT_HEADLESS: true
         continue-on-error: true
 
-      - name: Upload test reports
+      - name: Upload all reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cucumber-reports
-          path: reports/
-          retention-days: 30
-
-      - name: Upload Playwright reports
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-reports
-          path: playwright-report/
+          name: test-reports
+          path: |
+            reports/
+            playwright-report/
           retention-days: 30

@@ -21,8 +21,8 @@ const dateParts = parts.reduce((acc, part) => {
   acc[part.type] = part.value;
   return acc;
 }, {});
-// e.g., "16 Dec 2025 - 05-00 PM"
-const timestamp = `${dateParts.day} ${dateParts.month} ${dateParts.year} - ${dateParts.hour} ${dateParts.minute} ${dateParts.dayPeriod}`;
+// e.g., "16 Dec 2025 - 05-40-PM"
+const timestamp = `${dateParts.day} ${dateParts.month} ${dateParts.year} - ${dateParts.hour}-${dateParts.minute}-${dateParts.dayPeriod}`;
 const reportPath = path.join('reports', 'html', timestamp);
 const reportFilename = `${timestamp}.html`;
 
