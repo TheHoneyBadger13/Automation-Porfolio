@@ -9,6 +9,8 @@ on:
     branches: [ main, develop ]
   schedule:
     - cron: "50 9 * * *"  # Run daily at 5:15 PM Philippines time (UTC+8)
+  repository_dispatch:
+    types: [ run-regression-tests ]
   workflow_dispatch:
 
 jobs:
@@ -29,7 +31,7 @@ jobs:
         run: npm ci
 
       - name: Install Playwright browsers
-        run: npx playwright install
+        run: npx playwright install --with-deps
 
       - name: Run Cucumber tests
         run: npm run test:feature
