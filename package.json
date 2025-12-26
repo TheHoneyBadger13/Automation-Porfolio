@@ -1,19 +1,39 @@
 {
-  "name": "demoqa-playwright",
+  "name": "testautomation-playwright",
   "version": "1.0.0",
-  "description": "",
+  "description": "Integrated Playwright and Cucumber Automation Framework",
   "main": "index.js",
   "scripts": {
-    "test:feature": "cucumber-js features && node report.js"
+    "// --- BDD / Cucumber Scripts ---": "",
+    "pretest:feature": "rimraf reports/ screenshots/ allure-results/",
+    "test:feature": "cucumber-js || true",
+    "posttest:feature": "",
+    "// --- Allure Reporting ---": "",
+    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report",
+    "allure:report": "npm run allure:generate && npm run allure:open",
+    "// --- Non-BDD / Playwright Scripts ---": "",
+    "pretest:pw": "rimraf playwright-report/ test-results/",
+    "test:pw": "npx playwright test",
+    "// --- Utilities ---": "",
+    "clean": "rimraf reports/ screenshots/ playwright-report/ test-results/",
+    "test:bdd": "npm run test:feature"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "@cucumber/cucumber": "^12.2.0",
+    "@cucumber/cucumber": "^12.4.0",
     "@playwright/test": "^1.57.0",
-    "@types/node": "^24.10.1",
-    "multiple-cucumber-html-reporter": "^3.9.3"
+    "@types/node": "^24.10.4",
+    "allure-commandline": "^2.36.0",
+    "multiple-cucumber-html-reporter": "^3.9.3",
+    "rimraf": "^6.1.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "allure-cucumberjs": "^3.4.3"
   }
 }

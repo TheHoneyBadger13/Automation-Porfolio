@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "commonjs",
+    "lib": ["ESNext", "DOM"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "stepDefinitions/**/*.ts",
+    "pageObjects/**/*.ts",
+    "support/**/*.ts",
+    "*.spec.ts"
+  ]
+}

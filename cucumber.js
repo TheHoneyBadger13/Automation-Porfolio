@@ -1,12 +1,23 @@
 module.exports = {
   default: {
+    requireModule: ['ts-node/register'],
     require: [
-      "./stepDefinitions/**/*.js",
-      "./world.js"
+      "./stepDefinitions/**/*.ts",
+      "./world.ts"
     ],
     format: [
-      "json:reports/cucumber-report.json"   // generate JSON with attachments
+      "progress",                       // Shows progress in terminal
+      "summary",                            // Shows summary at the end
+      "html:reports/cucumber-report.html",  // HTML report
+      "allure-cucumberjs/reporter"               // Allure report
     ],
-    publishQuiet: true
+    formatOptions: {
+      snippetInterface: 'async-await'
+    },
+    paths: [
+      './features/**/*.feature'
+    ],
+    publishQuiet: true,
+    strict: true,
   }
 };
