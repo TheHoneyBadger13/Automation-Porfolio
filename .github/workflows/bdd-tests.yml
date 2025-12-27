@@ -75,12 +75,13 @@ jobs:
           publish_dir: ./allure-history
           force_orphan: true
 
-      - name: Upload Raw Artifacts
+      - name: Upload All Test Assets
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: Cucumber-BDD-Raw-Results
+          name: BDD-Test-Results-and-Reports
           path: |
             reports/
             allure-results/
+            allure-report/
           retention-days: 30
