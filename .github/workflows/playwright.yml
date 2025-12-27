@@ -11,6 +11,11 @@ on:
     types: [ run-regression-tests ]
   workflow_dispatch:
 
+# Added permissions to allow deployment
+permissions:
+  contents: write
+  pages: write
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -21,6 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    
     - name: Setup Node.js 24.x
       uses: actions/setup-node@v4
       with:
@@ -37,6 +43,22 @@ jobs:
       run: npm run test:pw
       env:
         PLAYWRIGHT_HEADLESS: "true"
+
+    - name: Prepare Portfolio Deployment
+      if: always()
+      run: |
+        mkdir -p temp_deploy
+        cp index.html temp_deploy/
+        cp *.png temp_deploy/ || true
+        cp -r playwright-report/. temp_deploy/playwright/ || echo "Playwright report not found"
+
+    - name: Deploy to Github Pages
+      if: always()
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./temp_deploy
+        keep_files: true
 
     - name: Upload Playwright Report
       if: always()

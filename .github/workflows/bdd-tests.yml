@@ -67,13 +67,21 @@ jobs:
           allure_history: allure-history
           keep_reports: 20
 
+      - name: Prepare Portfolio Deployment
+        if: always()
+        run: |
+          mkdir -p temp_deploy
+          cp index.html temp_deploy/
+          cp *.png temp_deploy/ || true
+          cp -r allure-report/. temp_deploy/allure/ || echo "Allure report not found"
+
       - name: Deploy report to Github Pages
         if: always()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./allure-history
-          force_orphan: true
+          publish_dir: ./temp_deploy
+          keep_files: true  # Changed from force_orphan to true to coexist with Playwright reports
 
       - name: Upload All Test Assets
         if: always()
