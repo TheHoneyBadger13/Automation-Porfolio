@@ -1,26 +1,59 @@
-Hi, This is my own automation testing project created to both highlight my automation skills and also to improve it. At this time around I would be using Playwright using Js and using saucedemo test site. For performance test, I used Apache JMeter on Restful-Booker test site
+# 🚀 Senior QA Automation Portfolio | Jerome San Juan
 
-Linkedin Profile: https://www.linkedin.com/in/jerome-san-juan-7b37a4121
+A centralized QA Dashboard and Automation Framework showcasing end-to-end testing strategies, performance engineering, and automated reporting.
 
-Currently has:
-1. BDD and non-BDD tests
-2. Report generation:
-• Allure for BDD tests
-• Playwright report for non-BDD tests
-3. Github actions workflows:
-• Continuous Integration (CI) workflow triggered on push
-• Scheduled cron job that runs the bdd tests daily
-• Workflow that runs when Dummy Dev repo (one of my other repo) has a push
-5. JMeter test plan for performance testing of Restful-Booker test site. Did not use the same site as the UI test for this as that site does not have real API endpoints. Also included is the test result for my stress test there.
-   
-To run a specific feature file:
-1. Open terminal either by clicking Terminal then selecting new terminal, or by pressing Ctrl + Shift + `
-2. Run this command and replace the name of the feature file 'npm run test:feature #NameOfTheFeatureFile.feature'
-3. To open allure report run 'npm allure:report'
+**🔗 [View Live QA Dashboard](https://thehoneybadger13.github.io/Automation-Portfolio/)**
 
-To run non-BDD test cases
-1. Open terminal either by clicking Terminal then selecting new terminal, or by pressing Ctrl + Shift + `
-2. Run this command and replace the name of the test file 'npx playwright test #NameOfTheTestFile.js'
-3. To generate playwright (Non-BDD) report run this command 'npx playwright show-report'
+---
 
-JMeter stress test dashboard<img width="1584" height="902" alt="jmeter-dashboard" src="https://github.com/user-attachments/assets/1436e09c-1be9-4aca-8e53-b5587c359c35" />
+## 🛠️ Tech Stack & Tools
+* **UI Automation:** Playwright + TypeScript
+* **Behavior Driven Development:** Cucumber (Gherkin)
+* **Performance Testing:** Apache JMeter
+* **CI/CD Pipeline:** GitHub Actions
+* **Reporting:** Allure BDD, Playwright HTML, & JMeter Dashboard
+
+---
+
+## 📂 Project Structure
+
+* **`portfolio-ui/`**: The centralized dashboard for viewing all test results.
+* **`tests/`**: Playwright test specifications and Page Object Models (POM).
+* **`features/`**: Gherkin feature files for BDD scenarios.
+* **`jmeter/`**: Performance test scripts (.jmx) for API load testing.
+* **`.github/workflows/`**: Automation pipelines that run tests and deploy reports.
+
+---
+
+## 🧪 Automation Highlights
+
+### 1. Web UI & E2E Testing (Playwright)
+The framework utilizes the **Page Object Model (POM)** to ensure maintainability. It covers critical business flows on the SauceDemo platform, including:
+* Robust Login validations (standard, locked-out, and problem users).
+* Full E2E checkout workflow from cart to order completion.
+* Cross-browser testing (Chromium, Firefox, WebKit).
+
+### 2. BDD Framework (Cucumber)
+Tests are written in Gherkin to bridge the gap between technical and non-technical stakeholders.
+* **Feature:** Checkout Process
+* **Scenario:** Successful purchase of multiple items.
+
+### 3. Performance Engineering (JMeter)
+Integrated load testing targeting the **Restful-Booker API**:
+* **Load Testing:** Simulated concurrent user traffic to measure response times.
+* **Stress Testing:** Identified system breakpoints and bottlenecking.
+* **Reporting:** Automatic generation of JMeter HTML Dashboard.
+
+---
+
+## 📊 Automated Reporting
+The project is configured with a CI/CD pipeline that automatically:
+1. Executes the Playwright and JMeter test suites on every push.
+2. Aggregates results into **Allure** and **HTML** formats.
+3. Deploys the updated results directly to the live dashboard.
+
+---
+
+## 📫 Contact & Connect
+* **LinkedIn:** [Jerome San Juan](https://www.linkedin.com/in/jerome-san-juan-7b37a4121/)
+* **Email:** romsj13@gmail.com
