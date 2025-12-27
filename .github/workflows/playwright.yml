@@ -11,7 +11,10 @@ on:
     types: [ run-regression-tests ]
   workflow_dispatch:
 
-# Added permissions to allow deployment
+concurrency:
+  group: github-pages-deploy
+  cancel-in-progress: false
+
 permissions:
   contents: write
   pages: write
