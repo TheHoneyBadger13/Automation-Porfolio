@@ -1,2 +1,361 @@
-<!DOCTYPE html><meta charset="utf-8"><meta http-equiv="refresh" content="0; URL=https://TheHoneyBadger13.github.io/Automation-Porfolio/35/index.html">
-<meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QA Portfolio | Jerome San Juan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --sidebar-width: 280px;
+            --bg-color: #f8fafc;
+            --sidebar-color: #1e293b;
+            --accent: #3b82f6;
+            --text-main: #334155;
+            --white: #ffffff;
+        }
+
+        body { 
+            font-family: 'Inter', 'Segoe UI', sans-serif; 
+            margin: 0; 
+            display: flex; 
+            background: var(--bg-color); 
+            color: var(--text-main); 
+            line-height: 1.6; 
+        }
+
+        /* Sidebar Navigation */
+        nav {
+            width: var(--sidebar-width);
+            background: var(--sidebar-color);
+            height: 100vh;
+            color: white;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+            box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+
+        nav h2 { 
+            text-align: center; 
+            font-size: 1.2rem; 
+            margin-bottom: 30px; 
+            letter-spacing: 1px; 
+            color: #f1f5f9; 
+            font-weight: 500; 
+        }
+
+        nav a {
+            padding: 12px 25px;
+            text-decoration: none;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: 0.3s;
+            font-size: 15px;
+        }
+
+        nav a:hover, nav a.active { 
+            background: #334155; 
+            color: white; 
+            border-left: 4px solid var(--accent); 
+        }
+
+        .nav-category { 
+            padding: 25px 25px 10px; 
+            font-size: 11px; 
+            text-transform: uppercase; 
+            color: #64748b; 
+            font-weight: 600; 
+        }
+
+        /* Main Content Layout */
+        main { 
+            margin-left: var(--sidebar-width); 
+            padding: 40px; 
+            width: calc(100% - var(--sidebar-width)); 
+            box-sizing: border-box;
+        }
+
+        .dashboard-grid { 
+            display: grid; 
+            grid-template-columns: 1.8fr 1fr; 
+            gap: 30px; 
+            align-items: start;
+        }
+
+        .card { 
+            background: var(--white); 
+            padding: 25px; 
+            border-radius: 16px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+            margin-bottom: 25px; 
+            border: 1px solid #e2e8f0; 
+        }
+
+        /* Section Styling */
+        .section-header {
+            border-bottom: 2px solid #e2e8f0;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--sidebar-color);
+        }
+
+        /* Opportunity Alert Box */
+        .opportunity-tag {
+            background: #dcfce7;
+            color: #166534;
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin: 15px 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 4px solid #22c55e;
+            font-size: 14px;
+        }
+
+        /* --- SINGLE IMAGE CAROUSEL SYSTEM --- */
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #000;
+            border: 1px solid #e2e8f0;
+        }
+
+        .carousel-slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .active-slide { display: block; }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(30, 41, 59, 0.8);
+            color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            z-index: 10;
+        }
+
+        .carousel-btn:hover { background: var(--accent); }
+        .prev { left: 15px; }
+        .next { right: 15px; }
+
+        .carousel-dots { text-align: center; padding: 15px 0; }
+        .dot {
+            height: 8px;
+            width: 30px;
+            margin: 0 5px;
+            background-color: #cbd5e1;
+            border-radius: 4px;
+            display: inline-block;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .active-dot { background-color: var(--accent); width: 45px; }
+
+        /* Buttons & Tables */
+        .btn { 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 8px; 
+            padding: 12px 20px; 
+            border-radius: 8px; 
+            text-decoration: none; 
+            font-weight: 600; 
+            margin-top: 10px; 
+            width: 100%; 
+            transition: 0.2s; 
+            box-sizing: border-box; 
+        }
+
+        .btn-allure { background: #f97316; color: white; }
+        .btn-playwright { background: #10b981; color: white; }
+        .btn-jmeter { background: #ef4444; color: white; }
+        
+        .contact-box { display: flex; gap: 15px; flex-wrap: wrap; margin-top: 20px; }
+        .contact-link { 
+            color: var(--sidebar-color); 
+            text-decoration: none; 
+            font-size: 0.95rem; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px;
+            background: #f1f5f9;
+            padding: 10px 18px;
+            border-radius: 8px;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+        .contact-link:hover { background: var(--accent); color: white; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th { text-align: left; padding: 12px; background: #f1f5f9; color: #475569; font-size: 13px; }
+        td { padding: 12px; border-bottom: 1px solid #f1f5f9; font-size: 14px; }
+        .status-pill { padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: 700; background: #dcfce7; color: #166534; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <h2>QA DASHBOARD</h2>
+    <a href="#" class="active"><i class="fa-solid fa-house"></i> Overview</a>
+    <div class="nav-category">Live Reports</div>
+    <a href="./allure/" target="_blank"><i class="fa-solid fa-chart-line"></i> Allure BDD</a>
+    <a href="./playwright/" target="_blank"><i class="fa-solid fa-vial"></i> Playwright HTML</a>
+    <a href="./jmeter/" target="_blank"><i class="fa-solid fa-gauge-high"></i> JMeter Performance</a>
+</nav>
+
+<main>
+    <div style="margin-bottom: 30px;">
+        <h1>Senior QA Automation Portfolio</h1>
+        <p>Advanced Test Engineering & CI/CD Optimization.</p>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="left-col">
+            
+            <div class="card">
+                <h3 class="section-header"><i class="fa-solid fa-user-tie"></i> About Jerome San Juan</h3>
+                <p>Hello! I am a Senior QA Automation Engineer specializing in building scalable, high-performance CI/CD testing pipelines. I focus on transforming complex business requirements into robust automated Gherkin scenarios.</p>
+                
+                <div class="opportunity-tag">
+                    <i class="fa-solid fa-briefcase"></i>
+                    <span>I am currently accepting contractual and full-time opportunities. Let's connect to discuss how I can help scale your quality engineering efforts!</span>
+                </div>
+                
+                <div class="contact-box">
+                    <a href="https://www.linkedin.com/in/jerome-san-juan-7b37a4121/" target="_blank" class="contact-link"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                    <a href="https://github.com/TheHoneyBadger13" target="_blank" class="contact-link"><i class="fa-brands fa-github"></i> GitHub</a>
+                    <a href="mailto:romsj13@gmail.com" class="contact-link"><i class="fa-solid fa-envelope"></i> romsj13@gmail.com</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="section-header"><i class="fa-solid fa-laptop-code"></i> SauceDemo Automation Workflow</h3>
+                <p style="font-size: 14px; color: #64748b; margin-top: -10px; margin-bottom: 20px;">
+                    Visual documentation of the automated end-to-end journey from login through to final order confirmation.
+                </p>
+
+                <div class="carousel-wrapper">
+                    <button class="carousel-btn prev" onclick="moveSlide(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+                    
+                    <div class="carousel-slide active-slide"><img src="step1-login.png" alt="Login"></div>
+                    <div class="carousel-slide"><img src="step2-products.png" alt="Products"></div>
+                    <div class="carousel-slide"><img src="step3-cart.png" alt="Cart"></div>
+                    <div class="carousel-slide"><img src="step4-checkout-information.png" alt="Info"></div>
+                    <div class="carousel-slide"><img src="step5-checkout-overview.png" alt="Overview"></div>
+                    <div class="carousel-slide"><img src="step6-checkout-confirmation.png" alt="Done"></div>
+
+                    <button class="carousel-btn next" onclick="moveSlide(1)"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+                
+                <div class="carousel-dots">
+                    <span class="dot active-dot" onclick="currentSlide(0)"></span>
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                    <span class="dot" onclick="currentSlide(5)"></span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="section-header"><i class="fa-solid fa-table-list"></i> Test Coverage Matrix</h3>
+                <table>
+                    <thead>
+                        <tr><th>Module</th><th>Requirement</th><th>Status</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Auth</td><td>Login with standard_user</td><td><span class="status-pill">PASSED</span></td></tr>
+                        <tr><td>Auth</td><td>Locked_out_user error handling</td><td><span class="status-pill">PASSED</span></td></tr>
+                        <tr><td>Cart</td><td>Verify item count persistence</td><td><span class="status-pill">PASSED</span></td></tr>
+                        <tr><td>Checkout</td><td>End-to-end purchase flow</td><td><span class="status-pill">PASSED</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="right-col">
+            <div class="card">
+                <h3 class="section-header"><i class="fa-solid fa-square-poll-vertical"></i> Live Reports</h3>
+                <div style="margin-bottom: 15px;">
+                    <span style="font-size: 13px; font-weight: 500;">BDD Allure</span>
+                    <a href="./allure/" target="_blank" class="btn btn-allure"><i class="fa-solid fa-bolt"></i> View Allure</a>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <span style="font-size: 13px; font-weight: 500;">Standard Playwright</span>
+                    <a href="./playwright/" target="_blank" class="btn btn-playwright"><i class="fa-solid fa-display"></i> View HTML Report</a>
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <span style="font-size: 13px; font-weight: 500;">JMeter Performance</span>
+                    <a href="./jmeter/" target="_blank" class="btn btn-jmeter"><i class="fa-solid fa-gauge-simple-high"></i> View Dashboard</a>
+                </div>
+            </div>
+            
+            <div class="card" style="background: #eff6ff; border: 1px solid #bfdbfe;">
+                <h4 style="margin-top: 0; color: #1e40af;"><i class="fa-solid fa-microchip"></i> Tech Stack</h4>
+                <ul style="font-size: 14px; padding-left: 20px; color: #1e40af;">
+                    <li>Playwright + TypeScript</li>
+                    <li>Cucumber (Gherkin)</li>
+                    <li>GitHub Actions (CI/CD)</li>
+                    <li>JMeter (Performance)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+    let slideIndex = 0;
+    const slides = document.getElementsByClassName("carousel-slide");
+    const dots = document.getElementsByClassName("dot");
+
+    function showSlides(n) {
+        if (n >= slides.length) { slideIndex = 0; }
+        if (n < 0) { slideIndex = slides.length - 1; }
+        for (let i = 0; i < slides.length; i++) {
+            slides[i].classList.remove("active-slide");
+            dots[i].classList.remove("active-dot");
+        }
+        slides[slideIndex].classList.add("active-slide");
+        dots[slideIndex].classList.add("active-dot");
+    }
+
+    function moveSlide(n) { showSlides(slideIndex += n); }
+    function currentSlide(n) { showSlides(slideIndex = n); }
+</script>
+
+</body>
+</html>
